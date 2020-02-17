@@ -15,7 +15,7 @@ services:
     ports:
       - 181:80
     environment:
-      - SELF_URL_PATH=http://www.loveyan.top:181/ # please change to your own domain
+      - SELF_URL_PATH=http: //www.loveyan.top: 181/ # please change to your own domain
       - DB_HOST=database.postgres
       - DB_PORT=5432
       - DB_NAME=ttrss
