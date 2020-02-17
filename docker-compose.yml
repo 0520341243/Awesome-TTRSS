@@ -1,21 +1,21 @@
 version: "3"
 services:
   database.postgres:
-    image: postgres:alpine
+    image: postgres: alpine
     container_name: postgres
     environment:
       - POSTGRES_PASSWORD=wang1989 # please change the password
     volumes:
-      - ~/postgres/data/:/var/lib/postgresql/data # persist postgres data to ~/postgres/data/ on the host
+      - ~/postgres/data/: /var/lib/postgresql/data # persist postgres data to ~/postgres/data/ on the host
     restart: always
 
   service.rss:
-    image: wangqiru/ttrss:latest
+    image: wangqiru/ttrss: latest
     container_name: ttrss
     ports:
-      - 181:80
+      - 181: 80
     environment:
-      - SELF_URL_PATH=http://www.loveyan.top:181/ # please change to your own domain
+      - SELF_URL_PATH=http: //www.loveyan.top: 181/ # please change to your own domain
       - DB_HOST=database.postgres
       - DB_PORT=5432
       - DB_NAME=ttrss
@@ -25,17 +25,17 @@ services:
     stdin_open: true
     tty: true
     restart: always
-    command: sh -c 'sh /wait-for.sh $$DB_HOST:$$DB_PORT -- php /configure-db.php && exec s6-svscan /etc/s6/'
+    command: sh -c 'sh /wait-for.sh $$DB_HOST: $$DB_PORT -- php /configure-db.php && exec s6-svscan /etc/s6/'
 
-  service.mercury: # set Mercury Parser API endpoint to `service.mercury:3000` on TTRSS plugin setting page
-    image: wangqiru/mercury-parser-api:latest
+  service.mercury: # set Mercury Parser API endpoint to `service.mercury: 3000` on TTRSS plugin setting page
+    image: wangqiru/mercury-parser-api: latest
     container_name: mercury
     expose:
       - 3000
     restart: always
 
-  service.opencc: # set OpenCC API endpoint to `service.opencc:3000` on TTRSS plugin setting page
-    image: wangqiru/opencc-api-server:latest
+  service.opencc: # set OpenCC API endpoint to `service.opencc: 3000` on TTRSS plugin setting page
+    image: wangqiru/opencc-api-server: latest
     container_name: opencc
     environment:
       - NODE_ENV=production
@@ -45,9 +45,9 @@ services:
 
   # utility.watchtower:
   #   container_name: watchtower
-  #   image: containrrr/watchtower:latest
+  #   image: containrrr/watchtower: latest
   #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /var/run/docker.sock: /var/run/docker.sock
   #   environment:
   #     - WATCHTOWER_CLEANUP=true
   #     - WATCHTOWER_POLL_INTERVAL=86400
